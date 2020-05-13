@@ -1,29 +1,27 @@
 import React from 'react';
-import Header from '../components/Header';
 import Search from '../components/Search';
 import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
-import Footer from '../components/Footer';
 import '../assets/styles/App.scss';
 
 import useInitialState from '../hooks/useInitialState';
 
-const API = 'https://api.jsonbin.io/b/5ea16a131299b9374234b2de/2/';
+//Redux
+import { connect } from 'react-redux';
 
-const Home = () => {
-	const initialState = useInitialState(API);
-	return initialState.length === 0 ? (
-		<h1>Loading...</h1>
-	) : (
+// const API = 'https://api.jsonbin.io/b/5ea16a131299b9374234b2de/2/';
+
+const Home = ({ mylist, trends, originals }) => {
+	// const initialState = useInitialState(API);
+	return (
 		<>
-			{/* <Header /> */}
 			<Search />
 
-			{initialState.mylist.length > 0 && (
+			{mylist.length > 0 && (
 				<Categories title='Mi Lista'>
 					<Carousel>
-						{initialState.mylist.map((item) => (
+						{mylist.map((item) => (
 							<CarouselItem key={item.id} {...item} />
 						))}
 					</Carousel>
@@ -32,7 +30,7 @@ const Home = () => {
 
 			<Categories title='Tendencias'>
 				<Carousel>
-					{initialState.trends.map((item) => (
+					{trends.map((item) => (
 						<CarouselItem key={item.id} {...item} />
 					))}
 				</Carousel>
@@ -40,15 +38,23 @@ const Home = () => {
 
 			<Categories title='Originales de Platzi Video'>
 				<Carousel>
-					{initialState.originals.map((item) => (
+					{originals.map((item) => (
 						<CarouselItem key={item.id} {...item} />
 					))}
 				</Carousel>
 			</Categories>
-
-			{/* <Footer /> */}
 		</>
 	);
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+	return {
+		mylist: state.mylist,
+		trends: state.trends,
+		originals: state.originals,
+	};
+};
+
+// export default Home;
+// export default connect(props, actions)(Home);
+export default connect(mapStateToProps, null)(Home);
