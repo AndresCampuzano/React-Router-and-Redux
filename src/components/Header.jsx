@@ -8,9 +8,14 @@ import '../assets/styles/components/Header.scss';
 import logo from '../assets/static/logo-platzi-video-BW2.png';
 import userIcon from '../assets/static/user-icon.png';
 
+import { logoutRequest } from '../actions';
+
 const Header = (props) => {
 	const { user } = props;
 	const hasUser = Object.keys(user).length > 0;
+	const handleLogout = () => {
+		props.logoutRequest({});
+	};
 	return (
 		<header className='header'>
 			<Link to='/'>
@@ -26,12 +31,22 @@ const Header = (props) => {
 					<p>Perfil</p>
 				</div>
 				<ul>
-					<li>
-						<Link to='/'>Cuenta</Link>
-					</li>
-					<li>
-						<Link to='/login'>Iniciar Sesión</Link>
-					</li>
+					{hasUser ? (
+						<li>
+							<Link to='/'>{user.name}</Link>
+						</li>
+					) : null}
+					{hasUser ? (
+						<li>
+							<Link to='/' onClick={handleLogout}>
+								Cerrar Sesión
+							</Link>
+						</li>
+					) : (
+						<li>
+							<Link to='/login'>Iniciar Sesión</Link>
+						</li>
+					)}
 				</ul>
 			</div>
 		</header>
@@ -44,4 +59,8 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = {
+	logoutRequest,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
