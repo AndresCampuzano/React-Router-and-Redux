@@ -6,7 +6,7 @@ const NotFound = () => {
 		<>
 			<h1>No encontrado</h1>
 			<Link to='/'>
-				<button className='btn-back-home'>Regresa al Home</button>
+				<button className='button'>Regresa al Home</button>
 			</Link>
 		</>
 	);

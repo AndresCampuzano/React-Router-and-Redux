@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getVideoSource } from '../actions';
 import '../assets/styles/components/Player.scss';
@@ -18,14 +18,18 @@ const Player = (props) => {
 				<source src={props.playing.source} type='video/mp4' />
 			</video>
 			<div className='Player-back'>
-				<button type='button' onClick={() => props.history.goBack()}>
+				<button
+					type='button'
+					className='button'
+					onClick={() => props.history.goBack()}
+				>
 					Regresar
 				</button>
 			</div>
 		</div>
 	) : (
 		<Link to='/'>
-			<button className='btn-back-home'>Regresa al Home</button>
+			<button className='button'>Regresa al Home</button>
 		</Link>
 	);
 };

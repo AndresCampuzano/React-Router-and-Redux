@@ -9,6 +9,16 @@
 	width: 100%;
 }
 
+// Dynamic CSS
+.green {
+	background: #21c08b;
+}
+
+.red {
+	background: #ff1100;
+}
+// -----------
+
 .header__img {
 	margin-left: 30px;
 	width: 200px;
@@ -56,4 +66,5 @@ ul:hover {
 	margin-right: 8px;
 	width: 40px;
 	border-radius: 50%;
+	object-fit: cover;
 }

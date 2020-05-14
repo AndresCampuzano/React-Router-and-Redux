@@ -1,23 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logoutRequest } from '../actions';
+import classNames from 'classnames';
 import gravatar from '../utils/gravatar';
-
 import '../assets/styles/components/Header.scss';
-
 import logo from '../assets/static/logo-platzi-video-BW2.png';
 import userIcon from '../assets/static/user-icon.png';
 
-import { logoutRequest } from '../actions';
-
 const Header = (props) => {
-	const { user } = props;
+	const { user, setColor } = props;
+	const inputStyle = classNames('header', setColor); //style header
 	const hasUser = Object.keys(user).length > 0;
 	const handleLogout = () => {
 		props.logoutRequest({});
 	};
 	return (
-		<header className='header'>
+		<header className={inputStyle}>
 			<Link to='/'>
 				<img className='header__img' src={logo} alt='Platzi Video' />
 			</Link>
