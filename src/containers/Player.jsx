@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../assets/styles/components/Player.scss';
 
-const Player = () => {
+const Player = (props) => {
+	const { id } = props.match.params;
 	return (
 		<div className='Player'>
 			<video controls autoPlay>
@@ -12,9 +12,9 @@ const Player = () => {
 				/>
 			</video>
 			<div className='Player-back'>
-				<Link to='/'>
-					<button type='button'>Regresar</button>
-				</Link>
+				<button type='button' onClick={() => props.history.goBack()}>
+					Regresar
+				</button>
 			</div>
 		</div>
 	);
