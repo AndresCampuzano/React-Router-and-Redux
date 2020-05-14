@@ -1,31 +1,27 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import { loginRequest } from '../actions';
-
-import '../assets/styles/components/Login.scss';
-
 import googleIcon from '../assets/static/google-icon.png';
 import twitterIcon from '../assets/static/twitter-icon.png';
+import '../assets/styles/components/Login.scss';
 
 const Login = (props) => {
 	const [form, setValues] = useState({
 		email: '',
 	});
 
-	const handleInput = (event) => {
+	const handleInput = (e) => {
 		setValues({
 			...form,
-			[event.target.name]: event.target.value,
+			[e.target.name]: e.target.value,
 		});
 	};
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
+	const handleSubmit = (e) => {
+		e.preventDefault();
 		props.loginRequest(form);
-		props.history.push('/'); //redirect to home
-		console.log(form);
+		props.history.push('/');
 	};
 
 	return (
@@ -38,6 +34,7 @@ const Login = (props) => {
 						className='input'
 						type='text'
 						placeholder='Correo'
+						autoComplete='username'
 						onChange={handleInput}
 					/>
 					<input
@@ -45,6 +42,7 @@ const Login = (props) => {
 						className='input'
 						type='password'
 						placeholder='Contraseña'
+						autoComplete='current-password'
 						onChange={handleInput}
 					/>
 					<button className='button'>Iniciar sesión</button>
@@ -69,7 +67,8 @@ const Login = (props) => {
 					</div>
 				</section>
 				<p className='login__container--register'>
-					No tienes ninguna cuenta <Link to='/register'>Regístrate</Link>
+					No tienes ninguna cuenta
+					<Link to='/register'>Regístrate</Link>
 				</p>
 			</section>
 		</section>
@@ -79,4 +78,5 @@ const Login = (props) => {
 const mapDispatchToProps = {
 	loginRequest,
 };
+
 export default connect(null, mapDispatchToProps)(Login);
