@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NotFound = () => {
 	return (
 		<>
 			<h1>No encontrado</h1>
-			<h2>Regresa al Home</h2>
+			<Link to='/'>
+				<button className='btn-back-home'>Regresa al Home</button>{' '}
+			</Link>
 		</>
 	);
 };

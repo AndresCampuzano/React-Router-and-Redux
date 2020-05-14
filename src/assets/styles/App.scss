@@ -10,3 +10,15 @@ body {
 * {
 	box-sizing: border-box;
 }
+
+// button Not found
+.btn-back-home {
+	padding: 12px 18px;
+	border-radius: 25px;
+	color: white;
+	border: 1px solid white;
+	background-color: $btn;
+	&:hover {
+		background-color: $btn-hover;
+	}
+}
