@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Search from '../components/Search';
 import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
@@ -6,9 +7,6 @@ import CarouselItem from '../components/CarouselItem';
 import '../assets/styles/App.scss';
 
 import useInitialState from '../hooks/useInitialState';
-
-//Redux
-import { connect } from 'react-redux';
 
 // const API = 'https://api.jsonbin.io/b/5ea16a131299b9374234b2de/2/';
 
